@@ -23,15 +23,15 @@
  *
  */
 
-exports.handler = (lambdaEvent, context, cb) => {
+exports.handler = (lambdaEvent, context, callback) => {
   // Get the email of the user
   const hasuraTriggerPayload = JSON.parse(lambdaEvent.body);
 
   console.log(hasuraTriggerPayload);
-  const hasuraData = hasuraTriggerPayload.event.data.new;
+  const newData = hasuraTriggerPayload.event.data.new;
 
-  cb(null, {
+  callback(null, {
     statusCode: 200,
-    body: JSON.stringify({receivedData: hasuraData})
+    body: JSON.stringify({newData: newData})
   });
 };
