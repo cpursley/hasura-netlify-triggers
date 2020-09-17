@@ -1,11 +1,11 @@
-import { Handler, Context, Callback } from 'aws-lambda';
+import { APIGatewayEvent, Context } from 'aws-lambda'
 
 interface Response {
   statusCode: number;
   body: string;
 }
 
-const handler: Handler = (event: any, context: Context, callback: Callback) => {
+export async function handler (event: APIGatewayEvent, context: Context) => {
   const hasuraTriggerPayload = JSON.parse(event.body);
   const newData = hasuraTriggerPayload.event.data.new;
 
@@ -16,7 +16,5 @@ const handler: Handler = (event: any, context: Context, callback: Callback) => {
     body: JSON.stringify({newData: newData})
   };
 
-  callback(undefined, response);
+  return response;
 };
-
-export { handler }
