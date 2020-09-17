@@ -22,7 +22,7 @@ export async function handler (event: APIGatewayEvent, context: Context) {
   } catch (e) {
     const response: Response = {
       statusCode: 500,
-      body: `Issue parsing hasura event: ${JSON.stringify(e)}`;
+      body: `Issue parsing hasura event: ${JSON.stringify(e)}`
     };
 
     return response;
