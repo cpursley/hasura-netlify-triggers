@@ -6,15 +6,25 @@ interface Response {
 }
 
 export async function handler (event: APIGatewayEvent, context: Context) {
-  const hasuraTriggerPayload = JSON.parse(event.body);
-  const newData = hasuraTriggerPayload.event.data.new;
+  try {
+    const hasuraTriggerPayload = JSON.parse(event.body);
+    const newData = hasuraTriggerPayload.event.data.new;
 
-  console.log(hasuraTriggerPayload);
+    console.log(hasuraTriggerPayload);
 
-  const response: Response = {
-    statusCode: 200,
-    body: JSON.stringify({newData: newData})
-  };
+    const response: Response = {
+      statusCode: 200,
+      body: JSON.stringify({newData: newData})
+    };
 
-  return response;
+    return response;
+
+  } catch (e) {
+    const response: Response = {
+      statusCode: 400,
+      body: `Issue parsing hasura event: ${JSON.stringify(e)}`;
+    };
+
+    return response;
+  }
 };
