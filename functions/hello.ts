@@ -5,7 +5,7 @@ interface Response {
   body: string;
 }
 
-export async function handler (event: APIGatewayEvent, context: Context) => {
+export async function handler (event: APIGatewayEvent, context: Context) {
   const hasuraTriggerPayload = JSON.parse(event.body);
   const newData = hasuraTriggerPayload.event.data.new;
 
