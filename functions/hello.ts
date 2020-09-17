@@ -21,7 +21,7 @@ export async function handler (event: APIGatewayEvent, context: Context) {
 
   } catch (e) {
     const response: Response = {
-      statusCode: 400,
+      statusCode: 500,
       body: `Issue parsing hasura event: ${JSON.stringify(e)}`;
     };
 
